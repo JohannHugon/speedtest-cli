@@ -112,6 +112,8 @@ Usage
                             distance
       --server SERVER       Specify a server ID to test against. Can be supplied
                             multiple times
+      --server-ip SERVER_IP Manually enter the destination IP of the server, using the
+                            format IP:Port as 127.0.0.1:8080
       --exclude EXCLUDE     Exclude a server from selection. Can be supplied
                             multiple times
       --mini MINI           URL of the Speedtest Mini server
