@@ -1721,6 +1721,8 @@ def parse_args():
     parser.add_argument('--server', type=PARSER_TYPE_INT, action='append',
                         help='Specify a server ID to test against. Can be '
                              'supplied multiple times')
+    parser.add_argument('--server-ip',
+                        help='Manually enter the destination IP of the server, using the format IP:Port as 127.0.0.1:8080')
     parser.add_argument('--exclude', type=PARSER_TYPE_INT, action='append',
                         help='Exclude a server from selection. Can be '
                              'supplied multiple times')
@@ -1848,7 +1850,7 @@ def shell():
     except (ConfigRetrievalError,) + HTTP_ERRORS:
         printer('Cannot retrieve speedtest configuration', error=True)
         raise SpeedtestCLIError(get_exception())
-
+    
     if args.list:
         try:
             speedtest.get_servers()
@@ -1869,8 +1871,7 @@ def shell():
 
     printer('Testing from %(isp)s (%(ip)s)...' % speedtest.config['client'],
             quiet)
-
-    if not args.mini:
+    if not args.mini and not args.server_ip:
         printer('Retrieving speedtest.net server list...', quiet)
         try:
             speedtest.get_servers(servers=args.server, exclude=args.exclude)
@@ -1887,7 +1888,6 @@ def shell():
                 '%s is an invalid server type, must '
                 'be an int' % ', '.join('%s' % s for s in args.server)
             )
-
         if args.server and len(args.server) == 1:
             printer('Retrieving information for the selected server...', quiet)
         else:
@@ -1895,6 +1895,17 @@ def shell():
         speedtest.get_best_server()
     elif args.mini:
         speedtest.get_best_server(speedtest.set_mini_server(args.mini))
+    elif args.server_ip:
+        server = {
+            'sponsor': 'Manualy setup IP',
+            'name': f"{args.server_ip}",
+            'url': f"http://{args.server_ip}/speedtest/upload.php" ,
+            'host': args.server_ip,
+            'latency': 0,
+            'id': '0'
+        }
+        speedtest.servers = [server]
+        speedtest.get_best_server()
 
     results = speedtest.results
 
