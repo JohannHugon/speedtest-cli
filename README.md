@@ -1,18 +1,14 @@
-speedtest-cli
-=============
+# speedtest-cli
+Forked from [https://github.com/PeterLinuxOSS/speedtest-cli](https://github.com/PeterLinuxOSS/speedtest-cli)
 
-Command line interface for testing internet bandwidth using
-speedtest.net fork from https://github.com/PeterLinuxOSS/speedtest-cli
 
-Versions
---------
+Command line interface for testing internet bandwidth using [speedtest.net](https://www.speedtest.net).
 
-speedtest-cli works with Python 2.4-3.7
+## Versions
 
-Usage
------
+`speedtest-cli` works with Python 2.4–3.7
 
-::
+## Usage
 
     $ speedtest-cli -h
     usage: speedtest-cli [-h] [--no-download] [--no-upload] [--single] [--bytes]
