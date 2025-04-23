@@ -1900,7 +1900,7 @@ def shell():
             'sponsor': 'Manualy setup IP',
             'name': f"{args.server_ip}",
             'url': f"http://{args.server_ip}/speedtest/upload.php" ,
-            'host': args.server_ip,
+            'host': args.server_ip.split(':')[0],
             'latency': 0,
             'id': '0'
         }
