@@ -1,5 +1,5 @@
 # speedtest-cli
-Forked from [https://github.com/PeterLinuxOSS/speedtest-cli](https://github.com/PeterLinuxOSS/speedtest-cli)
+Forked from [https://github.com/PeterLinuxOSS/speedtest-cli](https://github.com/PeterLinuxOSS/speedtest-cli) to add the `--server-ip` option, allowing tests to known IPs such as `localhost` or a private Ookla server.
 
 
 Command line interface for testing internet bandwidth using [speedtest.net](https://www.speedtest.net).
